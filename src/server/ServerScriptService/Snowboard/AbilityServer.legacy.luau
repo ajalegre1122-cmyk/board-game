@@ -1,22 +1,4 @@
 --[[
-	AbilityServer: lets everyone see each other's abilities, without trusting the clients.
-
-	Using an ability plays it on your own screen straight away (no lag), and your client tells the server which slot
-	you used (ReplicatedStorage.Snowboard.AbilityRemote). The server checks it before anyone else sees it:
-	  - it's one of the 3 slots, of the character the SERVER says you're playing: the player's "AbilityCharacter"
-	    attribute (Config.Abilities.DefaultCharacter for now; only Studio's test switcher can change it while testing)
-	  - you're alive
-	  - that slot's cooldown has passed (Config.Abilities cooldowns, with a little leeway for lag); the ultimate instead
-	    has to be 100% charged (Config.Abilities.UltCharge: the charge is kept here, see "ultimate charge" below)
-	  - you're not still using another ability (its animation: Abilities.BusyTime, same as the ability bar)
-	  - you're not stunned (hit by a Rasen Shuriken...) or frozen (someone's Za Warudo)
-	Thrown abilities (Kunai Throw, Rasen Shuriken: an ability with a Hit) are resolved here too: see "hits" below.
-	  - you're not spamming: Config.Abilities.Network.PerSecond / Burst messages at most; anything over is ignored
-	Then it tells every OTHER player "this player used this slot", and their clients play the effects on your rider.
-	Nothing else the client sends is used: no positions, no targets, no other player. Each client works out where the
-	effects go from your character, which everyone can already see. (Rejected uses only ever showed on the sender's
-	own screen.)
-
 	Testing: tick the "Log" attribute on this script to print every accepted / ignored use in the output.
 ]]
 
