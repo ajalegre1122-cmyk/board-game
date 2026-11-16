@@ -1,6 +1,9 @@
 -- AbilityServer
 -- Handles ability requests, cooldowns, targeting, and server-side effects.
 -- Set the script's Log attribute to true to debug accepted and rejected requests.
+-- Connected Discord-GitHub
+-- By ZevinSero (chosen9122)Yumi
+
 
 
 local Players = game:GetService("Players")
